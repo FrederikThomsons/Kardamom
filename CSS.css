@@ -27,3 +27,18 @@ h1 {
 .start-button:hover {
   background-color: #666;
 }
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 1.2em;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: none;
+  width: 250px;
+}
+
+button {
+  margin-top: 15px;
+  font-size: 1.2em;
+}
+
