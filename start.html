@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Dein Name</title>
+  <link rel="stylesheet" href="CSS.css">
+</head>
+<body>
+  <h1>Was ist dein Name?</h1>
+  <input type="text" id="nameInput" placeholder="Name eingeben">
+  <br>
+  <button onclick="checkName()">Weiter</button>
+
+  <script>
+    function checkName() {
+      const input = document.getElementById("nameInput").value.trim().toLowerCase();
+
+      // Zuordnung: Name → HTML-Datei
+      const pages = {
+        "valentin": "valentin.html",
+        "milena": "milena.html",
+        "emilie": "emilie.html",
+        "ida": "ida.html",
+        "felix": "felix.html",
+        "gerhard": "gerhard.html"
+      };
+
+      if (pages[input]) {
+        window.location.href = pages[input];
+      } else {
+        alert("Ugh, du hast etwas falsch eingegeben");
+      }
+    }
+  </script>
+</body>
+</html>
