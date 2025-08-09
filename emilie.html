@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Emilie</title>
+  <link rel="stylesheet" href="CSS.css" />
+</head>
+<body>
+  <h1>Moin moin Emilie</h1>
+  <p>Willkommen auf dieser wahnsinns, super tollen Webseite</p>
+
+  <button onclick="chooseAnswer('fantastisch')">Die Webseite ist fantastisch</button>
+  <button onclick="chooseAnswer('nicht so toll')">Die Webseite ist nicht so toll</button>
+
+  <script>
+    function chooseAnswer(answer) {
+      // Antwort im localStorage speichern
+      localStorage.setItem('emilieAnswer', answer);
+      // Weiterleiten
+      window.location.href = 'emilie2.html';
+    }
+  </script>
+</body>
+</html>
