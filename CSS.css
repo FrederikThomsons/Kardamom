@@ -14,13 +14,13 @@ h1 {
 }
 
 h2 {
-  font-size: 2em; /* etwas kleiner */
-  max-width: 600px; /* Boxbreite begrenzen */
-  margin: 15vh auto 0 auto; /* oben Abstand, horizontal zentrieren */
+  font-size: 2.7em; /* Punkt statt Komma */
+  max-width: 600px; /* Unsichtbare Boxbreite */
+  margin: 20vh auto 0 auto; /* Abstand von oben, horizontal zentriert */
   letter-spacing: 2px;
-  text-align: center; /* Text mittig in der Box */
+  text-align: center; /* Text in der Box mittig */
 }
- 
+
 
 /* Einheitlicher Button-Style für <button> und Links mit class="button" */
 .button, button {
