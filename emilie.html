@@ -5,7 +5,6 @@
   <title>Emilie</title>
   <link rel="stylesheet" href="CSS.css" />
   <style>
-    /* Zusätzliche Styles für das Ein-/Ausblenden */
     .hidden {
       display: none;
     }
@@ -15,17 +14,19 @@
   <!-- Erster Part -->
   <h2 id="intro">Moin moin Emilie.<br>Willkommen auf dieser wahnsinns, super tollen Webseite</h2>
 
-  <!-- Zweiter Part + Knöpfe -->
+  <!-- Zweiter Part -->
   <div id="secondPart" class="hidden">
+    <h2>Wie findest du diese tolle Webseite?</h2>
     <button onclick="chooseAnswer('fantastisch')">Die Webseite ist fantastisch</button>
     <button onclick="chooseAnswer('nicht so toll')">Die Webseite ist nicht so toll</button>
   </div>
 
   <script>
-    // Nach 3 Sekunden den zweiten Part anzeigen
+    // Nach 3 Sekunden Intro ausblenden und zweiten Part anzeigen
     setTimeout(() => {
+      document.getElementById('intro').classList.add('hidden');
       document.getElementById('secondPart').classList.remove('hidden');
-    }, 3000); // 3000 ms = 3 Sekunden
+    }, 3000); // 3 Sekunden
 
     function chooseAnswer(answer) {
       localStorage.setItem('emilieAnswer', answer);
