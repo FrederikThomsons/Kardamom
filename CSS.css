@@ -1,6 +1,6 @@
 body {
-  background-color: #111;
-  color: white;
+  background-color: white;
+  color: black;
   font-family: Arial, sans-serif;
   text-align: center;
   margin: 0;
@@ -10,45 +10,34 @@ body {
 h1 {
   font-size: 3em;
   margin-top: 15vh;
-  letter-spacing: 2px;
 }
 
 input[type="text"] {
-  padding: 12px 15px;
+  padding: 10px 12px;
   font-size: 1.2em;
   margin-top: 20px;
-  border-radius: 8px;
-  border: 2px solid #444;
+  border: 1px solid black;
   outline: none;
-  background-color: #222;
-  color: white;
+  background-color: white;
+  color: black;
   width: 250px;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-input[type="text"]:focus {
-  border-color: #00c3ff;
-  box-shadow: 0 0 8px #00c3ff;
 }
 
 button {
   display: inline-block;
-  margin-top: 25px;
-  padding: 12px 30px;
-  font-size: 1.2em;
-  background: linear-gradient(90deg, #00c3ff, #0077ff);
-  color: white;
-  border: none;
-  border-radius: 8px;
+  margin-top: 20px;
+  padding: 10px 25px;
+  font-size: 1.1em;
+  background-color: grey;
+  color: black;
+  border: 1px solid black;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px #00c3ff;
+  background-color: #bfbfbf; /* etwas helleres Grau beim Hover */
 }
 
 button:active {
-  transform: scale(0.98);
+  background-color: #a6a6a6; /* dunkleres Grau beim Klicken */
 }
