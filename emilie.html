@@ -4,19 +4,31 @@
   <meta charset="UTF-8" />
   <title>Emilie</title>
   <link rel="stylesheet" href="CSS.css" />
+  <style>
+    /* Zusätzliche Styles für das Ein-/Ausblenden */
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <h2>Moin moin Emilie. Willkommen auf dieser wahnsinns, super tollen Webseite</h2>
-  <br>
+  <!-- Erster Part -->
+  <h2 id="intro">Moin moin Emilie.<br>Willkommen auf dieser wahnsinns, super tollen Webseite</h2>
 
-  <button onclick="chooseAnswer('fantastisch')">Die Webseite ist fantastisch</button>
-  <button onclick="chooseAnswer('nicht so toll')">Die Webseite ist nicht so toll</button>
+  <!-- Zweiter Part + Knöpfe -->
+  <div id="secondPart" class="hidden">
+    <button onclick="chooseAnswer('fantastisch')">Die Webseite ist fantastisch</button>
+    <button onclick="chooseAnswer('nicht so toll')">Die Webseite ist nicht so toll</button>
+  </div>
 
   <script>
+    // Nach 3 Sekunden den zweiten Part anzeigen
+    setTimeout(() => {
+      document.getElementById('secondPart').classList.remove('hidden');
+    }, 3000); // 3000 ms = 3 Sekunden
+
     function chooseAnswer(answer) {
-      // Antwort im localStorage speichern
       localStorage.setItem('emilieAnswer', answer);
-      // Weiterleiten
       window.location.href = 'emilie2.html';
     }
   </script>
