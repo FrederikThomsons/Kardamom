@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Milena</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      text-align: center;
+      padding-top: 20vh;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .visible {
+      opacity: 1;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .question {
+      margin-top: 30px;
+      font-size: 1.8rem;
+    }
+
+    button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Drei Hallos -->
+  <h2 id="hallo1">Hallo</h2>
+  <h2 id="hallo2" class="hidden">Hallo</h2>
+  <h2 id="hallo3" class="hidden">Hallo</h2>
+
+  <!-- Frage + Buttons -->
+  <div id="questionPart" class="hidden">
+    <div class="question">Wieviele Hallos waren das gerade?</div>
+    <button onclick="chooseAnswer('Eines')">Eines</button>
+    <button onclick="chooseAnswer('Zwei')">Zwei</button>
+    <button onclick="chooseAnswer('Drei')">Drei</button>
+    <button onclick="chooseAnswer('Vier')">Vier</button>
+    <button onclick="chooseAnswer('Die Antwort ist offensichtlich 3??')">Die Antwort ist offensichtlich 3??</button>
+  </div>
+
+  <script>
+    function fadeSequence() {
+      const hallos = [
+        document.getElementById('hallo1'),
+        document.getElementById('hallo2'),
+        document.getElementById('hallo3')
+      ];
+
+      let index = 0;
+
+      function showNext() {
+        if (index > 0) {
+          // vorheriges Hallo ausblenden
+          hallos[index - 1].classList.remove('visible');
+          setTimeout(() => {
+            hallos[index - 1].classList.add('hidden');
+          }, 1000);
+        }
+
+        if (index < hallos.length) {
+          // nächstes Hallo einblenden
+          hallos[index].classList.remove('hidden');
+          setTimeout(() => {
+            hallos[index].classList.add('visible');
+          }, 50);
+
+          index++;
+          setTimeout(showNext, 2000); // nächstes Hallo nach 2 Sek.
+        } else {
+          // Alle Hallos fertig → Frage anzeigen
+          setTimeout(() => {
+            document.getElementById('questionPart').classList.remove('hidden');
+          }, 1000);
+        }
+      }
+
+      showNext();
+    }
+
+    function chooseAnswer(answer) {
+      localStorage.setItem('milenaAnswer', answer);
+      window.location.href = 'milena2.html';
+    }
+
+    // Start
+    fadeSequence();
+  </script>
+</body>
+</html>
