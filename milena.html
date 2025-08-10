@@ -6,10 +6,10 @@
   <link rel="stylesheet" href="CSS.css" />
 </head>
 <body>
-  <!-- Das große Hallo-Element (wird per JS befüllt und gefadet) -->
+  <!-- Hallo-Text -->
   <h1 id="halloText" aria-live="polite"></h1>
 
-  <!-- Frage + Buttons (zuerst versteckt) -->
+  <!-- Frage + Buttons (anfangs unsichtbar) -->
   <div id="question" aria-hidden="true">
     <h3>Wieviele Hallo's waren das gerade?</h3>
     <div class="buttons">
@@ -22,7 +22,6 @@
   </div>
 
   <script>
-    // einfache Wartefunktion mit Promise
     function wait(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
@@ -31,27 +30,22 @@
       const hallos = ["Hallo", "Hallo", "Hallo"];
       const el = document.getElementById('halloText');
 
-      // Zeiten (ms)
-      const fadeDuration = 1200; // CSS transition duration
-      const visibleTime = 900;   // wie lange es vollständig sichtbar bleibt
+      const fadeDuration = 1200; // muss mit CSS übereinstimmen
+      const visibleTime = 900;   // wie lange "Hallo" voll sichtbar bleibt
 
       for (let i = 0; i < hallos.length; i++) {
-        // set text und sichtbar machen (fade in)
         el.textContent = hallos[i];
-        el.style.display = 'block';
+        
+        // Einblenden
+        el.classList.add('visible');
+        await wait(fadeDuration + visibleTime);
 
-        // cause reflow so transition works reliably
-        void el.offsetWidth;
-
-        el.classList.add('visible'); // --> opacity von 0 -> 1 (fade-in)
-        await wait(fadeDuration + visibleTime); // warte fade-in + sichtzeit
-
-        // fade out
-        el.classList.remove('visible'); // --> opacity 1 -> 0 (fade-out)
-        await wait(fadeDuration); // warte fade-out zu Ende
+        // Ausblenden
+        el.classList.remove('visible');
+        await wait(fadeDuration);
       }
 
-      // am Ende das Hallo-Element ausblenden und Frage zeigen
+      // Text komplett weg und Frage anzeigen
       el.style.display = 'none';
       const q = document.getElementById('question');
       q.style.display = 'block';
