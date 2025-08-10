@@ -1,41 +1,18 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Milena</title>
-  <style>
-    body {
-      text-align: center;
-      font-family: Arial, sans-serif;
-      background: #fff;
-      margin: 0;
-      padding: 0;
-    }
-    h3 {
-      font-size: 3em;
-      margin-top: 20vh;
-      opacity: 0;
-      transition: opacity 1.5s ease;
-    }
-    .visible {
-      opacity: 1;
-    }
-    .hidden {
-      opacity: 0;
-    }
-    #question {
-      margin-top: 20vh;
-    }
-
-  </style>
+  <link rel="stylesheet" href="CSS.css" />
 </head>
 <body>
+  <!-- Das große Hallo-Element (wird per JS befüllt und gefadet) -->
+  <h1 id="halloText" aria-live="polite"></h1>
 
-  <h1 id="halloText"></h1>
-  
-  <div id="question" style="display:none;">
+  <!-- Frage + Buttons (zuerst versteckt) -->
+  <div id="question" aria-hidden="true">
     <h3>Wieviele Hallo's waren das gerade?</h3>
-    <div>
+    <div class="buttons">
       <button onclick="saveAnswer('Eines')">Eines</button>
       <button onclick="saveAnswer('Zwei')">Zwei</button>
       <button onclick="saveAnswer('Drei')">Drei</button>
@@ -45,44 +22,48 @@
   </div>
 
   <script>
-    const hallos = ["Hallo", "Hallo", "Hallo"];
-    let index = 0;
-    const halloEl = document.getElementById("halloText");
+    // einfache Wartefunktion mit Promise
+    function wait(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
 
-    function showNextHallo() {
-      if (index < hallos.length) {
-        halloEl.textContent = hallos[index];
-        halloEl.classList.add("visible");
-        
-        // Nach 1.5 Sekunden langsam ausblenden
-        setTimeout(() => {
-          halloEl.classList.remove("visible");
-          halloEl.classList.add("hidden");
-        }, 1500);
+    async function runHallos() {
+      const hallos = ["Hallo", "Hallo", "Hallo"];
+      const el = document.getElementById('halloText');
 
-        // Nächstes Hallo starten
-        setTimeout(() => {
-          index++;
-          showNextHallo();
-        }, 3000);
+      // Zeiten (ms)
+      const fadeDuration = 1200; // CSS transition duration
+      const visibleTime = 900;   // wie lange es vollständig sichtbar bleibt
 
-      } else {
-        // Nach letztem Hallo Frage anzeigen
-        setTimeout(() => {
-          halloEl.style.display = "none";
-          document.getElementById("question").style.display = "block";
-        }, 1500);
+      for (let i = 0; i < hallos.length; i++) {
+        // set text und sichtbar machen (fade in)
+        el.textContent = hallos[i];
+        el.style.display = 'block';
+
+        // cause reflow so transition works reliably
+        void el.offsetWidth;
+
+        el.classList.add('visible'); // --> opacity von 0 -> 1 (fade-in)
+        await wait(fadeDuration + visibleTime); // warte fade-in + sichtzeit
+
+        // fade out
+        el.classList.remove('visible'); // --> opacity 1 -> 0 (fade-out)
+        await wait(fadeDuration); // warte fade-out zu Ende
       }
+
+      // am Ende das Hallo-Element ausblenden und Frage zeigen
+      el.style.display = 'none';
+      const q = document.getElementById('question');
+      q.style.display = 'block';
+      q.setAttribute('aria-hidden', 'false');
     }
 
     function saveAnswer(answer) {
-      localStorage.setItem("milenaAnswer", answer);
-      window.location.href = "milena2.html";
+      localStorage.setItem('milenaAnswer', answer);
+      window.location.href = 'milena2.html';
     }
 
-    // Start
-    showNextHallo();
+    document.addEventListener('DOMContentLoaded', runHallos);
   </script>
-
 </body>
 </html>
