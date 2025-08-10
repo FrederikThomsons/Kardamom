@@ -3,22 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <title>Milena</title>
-  <link rel="stylesheet" href="CSS.css">
   <style>
-    .fade {
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    h3 {
+      font-size: 3em;
+      margin-top: 20vh;
       opacity: 0;
       transition: opacity 1.5s ease;
     }
     .visible {
       opacity: 1;
     }
+    .hidden {
+      opacity: 0;
+    }
+    #question {
+      margin-top: 20vh;
+    }
+
   </style>
 </head>
 <body>
 
   <h1 id="halloText"></h1>
+  
   <div id="question" style="display:none;">
-    <h2>Wieviele Hallos waren das gerade?</h2>
+    <h3>Wieviele Hallo's waren das gerade?</h3>
     <div>
       <button onclick="saveAnswer('Eines')">Eines</button>
       <button onclick="saveAnswer('Zwei')">Zwei</button>
@@ -37,17 +53,25 @@
       if (index < hallos.length) {
         halloEl.textContent = hallos[index];
         halloEl.classList.add("visible");
-        halloEl.classList.remove("fade");
+        
+        // Nach 1.5 Sekunden langsam ausblenden
         setTimeout(() => {
-          halloEl.classList.add("fade");
-        }, 1000);
+          halloEl.classList.remove("visible");
+          halloEl.classList.add("hidden");
+        }, 1500);
+
+        // Nächstes Hallo starten
         setTimeout(() => {
           index++;
           showNextHallo();
-        }, 2500);
+        }, 3000);
+
       } else {
-        halloEl.style.display = "none";
-        document.getElementById("question").style.display = "block";
+        // Nach letztem Hallo Frage anzeigen
+        setTimeout(() => {
+          halloEl.style.display = "none";
+          document.getElementById("question").style.display = "block";
+        }, 1500);
       }
     }
 
@@ -56,7 +80,7 @@
       window.location.href = "milena2.html";
     }
 
-    // Initial start
+    // Start
     showNextHallo();
   </script>
 
