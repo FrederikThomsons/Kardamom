@@ -1,3 +1,4 @@
+/* Grundlayout */
 body {
   background-color: white;
   color: black;
@@ -7,35 +8,58 @@ body {
   padding: 0;
 }
 
+/* grosses hallo (wird gefadet) */
 h1 {
-  font-size: 4em;
-  margin-top: 15vh;
+  font-size: 40px;           /* nicht em, feste Größe */
+  max-width: 1000px;
+  margin: 20vh auto 0 auto;  /* zentriert mit Abstand von oben */
   letter-spacing: 2px;
+  text-align: center;
+  opacity: 0;                /* startet unsichtbar */
+  transition: opacity 1.2s ease; /* match fadeDuration in JS */
+  display: block;
 }
 
-h2 {
-  font-size: 2.7em; /* Punkt statt Komma */
-  max-width: 1000px; /* Unsichtbare Boxbreite */
-  margin: 20vh auto 0 auto; /* Abstand von oben, horizontal zentriert */
-  letter-spacing: 2px;
-  text-align: center; /* Text in der Box mittig */
+/* visible sorgt für das Einblenden (opacity 1) */
+h1.visible {
+  opacity: 1;
 }
 
+/* Frage-Überschrift */
+h3 {
+  font-size: 24px;
+  max-width: 900px;
+  margin: 0 auto 20px auto;
+  text-align: center;
+}
 
-/* Einheitlicher Button-Style für <button> und Links mit class="button" */
+/* Frage-Container zunächst versteckt (JS schaltet display:block) */
+#question {
+  display: none; /* JS zeigt das Element später */
+  margin-top: 8vh;
+}
+
+/* Buttons: schlicht, grauer Hintergrund, schwarze Outline */
 .button, button {
   display: inline-block;
-  margin-top: 25px;
-  padding: 12px 30px;
-  font-size: 1.2em;
+  margin: 12px;
+  padding: 12px 28px;
+  font-size: 16px;
   background-color: grey;
   color: black;
   border: 2px solid black;
   border-radius: 4px;
   cursor: pointer;
-  text-decoration: none; /* Unterstreichung bei Links entfernen */
+  text-decoration: none;
 }
 
+/* Hover leicht heller (optional, sehr dezent) */
 .button:hover, button:hover {
   background-color: #bfbfbf;
+}
+
+/* Button-Container: sorgt dafür, dass Buttons untereinander zentriert sind */
+.buttons {
+  display: inline-block;
+  text-align: center;
 }
