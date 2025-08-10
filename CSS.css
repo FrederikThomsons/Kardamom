@@ -10,34 +10,23 @@ body {
 h1 {
   font-size: 3em;
   margin-top: 15vh;
+  letter-spacing: 2px;
 }
 
-input[type="text"] {
-  padding: 10px 12px;
-  font-size: 1.2em;
-  margin-top: 20px;
-  border: 1px solid black;
-  outline: none;
-  background-color: white;
-  color: black;
-  width: 250px;
-}
-
-button {
+/* Einheitlicher Button-Style für <button> und Links mit class="button" */
+.button, button {
   display: inline-block;
-  margin-top: 20px;
-  padding: 10px 25px;
-  font-size: 1.1em;
+  margin-top: 25px;
+  padding: 12px 30px;
+  font-size: 1.2em;
   background-color: grey;
   color: black;
-  border: 1px solid black;
+  border: 2px solid black;
+  border-radius: 4px;
   cursor: pointer;
+  text-decoration: none; /* Unterstreichung bei Links entfernen */
 }
 
-button:hover {
-  background-color: #bfbfbf; /* etwas helleres Grau beim Hover */
-}
-
-button:active {
-  background-color: #a6a6a6; /* dunkleres Grau beim Klicken */
+.button:hover, button:hover {
+  background-color: #bfbfbf;
 }
