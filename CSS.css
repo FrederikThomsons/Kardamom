@@ -8,21 +8,19 @@ body {
   padding: 0;
 }
 
-/* grosses hallo (wird gefadet) */
-h1 {
-  font-size: 40px;           /* nicht em, feste Größe */
+/* Hallo-Text (nur in milena.html) */
+#halloText {
+  font-size: 40px;
   max-width: 1000px;
-  margin: 20vh auto 0 auto;  /* zentriert mit Abstand von oben */
+  margin: 20vh auto 0 auto;
   letter-spacing: 2px;
   text-align: center;
-  opacity: 0;                /* startet unsichtbar */
-  transition: opacity 1.2s ease; /* match fadeDuration in JS */
-  display: block;
+  opacity: 0; /* startet unsichtbar */
+  transition: opacity 1.2s ease; /* Dauer muss JS fadeDuration entsprechen */
 }
 
-/* visible sorgt für das Einblenden (opacity 1) */
-h1.visible {
-  opacity: 1;
+#halloText.visible {
+  opacity: 1; /* eingeblendet */
 }
 
 /* Frage-Überschrift */
@@ -33,14 +31,15 @@ h3 {
   text-align: center;
 }
 
-/* Frage-Container zunächst versteckt (JS schaltet display:block) */
+/* Frage-Container (zuerst versteckt) */
 #question {
-  display: none; /* JS zeigt das Element später */
+  display: none;
   margin-top: 8vh;
 }
 
-/* Buttons: schlicht, grauer Hintergrund, schwarze Outline */
-.button, button {
+/* Buttons */
+.button,
+button {
   display: inline-block;
   margin: 12px;
   padding: 12px 28px;
@@ -53,12 +52,12 @@ h3 {
   text-decoration: none;
 }
 
-/* Hover leicht heller (optional, sehr dezent) */
-.button:hover, button:hover {
+.button:hover,
+button:hover {
   background-color: #bfbfbf;
 }
 
-/* Button-Container: sorgt dafür, dass Buttons untereinander zentriert sind */
+/* Button-Container */
 .buttons {
   display: inline-block;
   text-align: center;
